@@ -1,0 +1,120 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(121, 121, 207);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+#mainContainer{
+    background-color: white;
+    width: 550px;
+    height: 450px;
+    padding: 20px 50px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    box-shadow: 0px 0px 20px rgb(130, 130, 178);
+    position: relative;
+}
+h3{
+    font-size: 1.7rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    text-transform: capitalize;
+}
+#firstP{
+    margin-top: 10px;
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    font-style: italic;
+}
+
+form{
+    padding-block: 30px;
+    margin: auto;
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+#info{
+    width: 100%;
+    margin-block-end: 20px;
+    padding: 20px;
+    background-color: #DCEDFC;
+    color: #333;
+    font-family: 'Times New Roman', Times, serif;
+}
+label{
+    width: 100%;
+    text-align: left;
+    /* margin-left: 20px; */
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+input{
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #849db2;
+    outline: 0;
+}
+input:focus{
+    border: 1px solid #849db2;
+    outline: 0;
+}
+button{
+    width: 100%;
+    margin-top: 15px;
+    color: white;
+    background-color: #7064D1;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+#remembered{
+    text-align: center;
+    font-size: 16px;
+    color: #444;
+}
+#remembered a{
+    font-style: oblique;
+}
+#footer{
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    animation: fade 1s ease-in infinite;
+    -webkit-animation:fade 1s ease-in infinite;
+}
+
+
+
+@keyframes fade {
+    0%{
+        opacity: 1;
+        color: rgb(79, 79, 133);
+    }
+    100%{
+        opacity: 0.5;
+        color: black;
+    }
+}

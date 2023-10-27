@@ -1,0 +1,141 @@
+*{
+	padding:0;
+	margin:0;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+
+    background-color: #000000c1;
+}
+.rose{
+    background-color: #db14819e;
+    padding: 20px;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+
+
+    animation: fade 1s ease;
+    -webkit-animation: fade 2s ease-in;
+}
+
+@keyframes fade {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+#left{
+    width: 40%;
+    height: 100%;
+}
+#rigth{
+    width: 60%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    /* background-color: #857496; */
+}
+#left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+
+    padding: 50px;
+    /* background-color: #789456; */
+}
+#left img{
+    margin-bottom: 20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+#left p{
+    text-align: justify;
+    margin-bottom: 50px;
+}
+button{
+    color: white !important;
+    background-color: rgb(255, 0, 140) !important;
+}
+.form-group{
+    position: relative;
+}
+.form-group label{
+    font-size: 1em;
+    position: absolute;
+    top: 7px;
+    left: 25px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+input[type="text"],input[type="email"],input[type="date"],input[type="password"]{
+    background-color: #ffffff18 !important;
+    color: white !important;
+    padding: 12px  !important;
+    padding-top: 15px !important;
+    margin: 10px;
+    width: 500px !important;
+}
+input[type="text"]:fo + label,input[type="password"]:focus + label,input[type="email"]:focus + label , input:not(:placeholder-shown) +label {
+    top: 0px;
+    font-size: 12px;
+
+}
+#remember{
+    position: relative;
+    left: 13px;
+}
+#remember label{
+    font-size: 16px;
+}
+
+#bottom{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 5px;
+    padding-right: 20px;
+}
+#bottom p a {
+    font-weight: bold;
+    color: white;
+}
+.select{
+    position: relative;
+    left: 5px;
+    width: 500px !important;
+    background-color: #ffffff18 !important;
+    color: white;
+    padding: 10px;
+}
+.select option{
+    color: black;
+}
