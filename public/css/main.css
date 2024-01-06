@@ -18,13 +18,13 @@ body {
     width: 90px;
     height: 100%;
     /* background-color: rgb(130, 82, 233); */
-    background-color: #6D75C5;
+    background-color: #6d75c5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
-#aside .top button{
+#aside .top button {
     border: none;
     background-color: transparent;
     color: white;
@@ -37,8 +37,8 @@ body {
     -o-border-radius: 50%;
     text-align: center;
 }
-#aside .top .active{
-    background-color: #8A91D1;
+#aside .top .active {
+    background-color: #8a91d1;
 }
 
 /* #aside i {
@@ -65,7 +65,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    padding-top:40%;
+    padding-top: 40%;
 }
 
 #aside .bottom {
@@ -109,7 +109,8 @@ body {
 
 #messages #messageTitle {
     font-size: 1.4rem;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
     margin-bottom: 25px;
 }
 
@@ -154,13 +155,13 @@ body {
     height: calc(100% - 130px);
     overflow-y: auto;
     visibility: hidden;
-
 }
 
-#messages .bottom .forScroll{
+#messages .bottom .forScroll {
     height: 100%;
 }
-#messages .bottom:hover,#messages .bottom .forScroll{
+#messages .bottom:hover,
+#messages .bottom .forScroll {
     visibility: visible;
     transition: 0.5s ease;
     -webkit-transition: 0.5s ease;
@@ -183,14 +184,15 @@ body {
     align-items: center;
     margin-bottom: 10px;
     /*background-color: whitesmoke;
-    */padding: 10px;
+    */
+    padding: 10px;
     padding-left: 20px;
     cursor: pointer;
-    transition:0.5s ease-in;
-    -webkit-transition:0.5s ease-in;
-    -moz-transition:0.5s ease-in;
-    -ms-transition:0.5s ease-in;
-    -o-transition:0.5s ease-in;
+    transition: 0.5s ease-in;
+    -webkit-transition: 0.5s ease-in;
+    -moz-transition: 0.5s ease-in;
+    -ms-transition: 0.5s ease-in;
+    -o-transition: 0.5s ease-in;
 }
 
 #messages .bottom .active {
@@ -268,7 +270,8 @@ body {
     -o-border-radius: 5px;
 }
 
-#messages .bottom #directsMessages, #messages .bottom #channels {
+#messages .bottom #directsMessages,
+#messages .bottom #channels {
     margin-top: 50px;
 }
 
@@ -289,15 +292,13 @@ body {
     right: 40px;
     bottom: 15px;
     cursor: pointer;
-
-
 }
 
 #messages .bottom .plusButton i {
     position: relative;
     top: -10px;
-    background-color: #DEF3F0;
-    color: #06D6A0;
+    background-color: #def3f0;
+    color: #06d6a0;
     padding: 8px;
 }
 
@@ -330,7 +331,7 @@ body {
 #conversationBloc .top .left {
     display: flex;
 }
-#conversationBloc .top .left .fa.fa-backspace{
+#conversationBloc .top .left .fa.fa-backspace {
     display: none;
 }
 
@@ -339,7 +340,7 @@ body {
 }
 
 #conversationBloc .top .left .center .nom {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     font-size: 14px;
 }
 
@@ -356,7 +357,7 @@ body {
     padding-right: 35px;
 }
 
-#conversationBloc > div.top > div.right > img#detailsMediaQueries{
+#conversationBloc > div.top > div.right > img#detailsMediaQueries {
     display: none;
 }
 
@@ -402,27 +403,48 @@ body {
     -ms-transition: 0.2 ease;
     -o-transition: 0.2 ease;
 }
-#conversationBloc #center .conversationReceived .reveivedConversation .dropdown{
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .dropdown {
     width: fit-content;
     padding: 0;
 }
-#conversationBloc #center .conversationReceived .reveivedConversation .dropdown-menu{
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .dropdown-menu {
     font-size: 12px;
     overflow-x: hidden;
     padding-block: 5px;
     min-width: 50px !important;
-    animation:fade 0.4s ease-in-out;
-    -webkit-animation:fade 0.4s ease-in-out;
+    animation: fade 0.4s ease-in-out;
+    -webkit-animation: fade 0.4s ease-in-out;
 }
-#conversationBloc #center .conversationReceived .reveivedConversation .dropdown-item:active{
-    background-color: #6D75C5;
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .dropdown-item:active {
+    background-color: #6d75c5;
     color: white;
 }
-#conversationBloc #center .conversationReceived .reveivedConversation .dropdown button:focus{
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .dropdown
+    button:focus {
     border: none;
 }
 
-#conversationBloc #center .conversationReceived .reveivedConversation .dropdown-item{
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .dropdown-item {
     font-size: 12px;
 }
 
@@ -440,7 +462,11 @@ body {
     visibility: visible;
 }
 
-#conversationBloc #center .conversationReceived .reveivedConversation .receivedMessage {
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .receivedMessage {
     background-color: #eee;
     font-size: 12px;
     text-align: justify;
@@ -453,19 +479,28 @@ body {
     -o-border-radius: 5px;
 }
 
-#conversationBloc #center .conversationReceived .reveivedConversation .heure{
-    margin-top:15px;
+#conversationBloc #center .conversationReceived .reveivedConversation .heure {
+    margin-top: 15px;
     font-weight: 650;
     color: #666;
 }
 
-#conversationBloc #center .conversationReceived .reveivedConversation .noBackground {
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .noBackground {
     /* background-color: #ddd; */
     margin: 0;
     margin-bottom: 10px;
 }
 
-#conversationBloc #center .conversationReceived .reveivedConversation .receivedMessage .image {
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .receivedMessage
+    .image {
     /* width: 300px; */
     /* height: 250px; */
     position: relative;
@@ -475,10 +510,15 @@ body {
     flex-direction: column;
     max-width: 300px;
     margin-bottom: 15px;
-
 }
 
-#conversationBloc #center .conversationReceived .reveivedConversation .receivedMessage .image img {
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .receivedMessage
+    .image
+    img {
     max-height: 100%;
     width: 100%;
     height: auto;
@@ -493,7 +533,13 @@ body {
     position: static;
 }
 
-#conversationBloc #center .conversationReceived .reveivedConversation .receivedMessage .image span {
+#conversationBloc
+    #center
+    .conversationReceived
+    .reveivedConversation
+    .receivedMessage
+    .image
+    span {
     /* background-color: #39393929; */
     background-color: #39393949;
     color: white;
@@ -548,7 +594,7 @@ body {
 }
 
 #conversationBloc #center .conversationReceived .senderProfile i {
-    font-size: 12px
+    font-size: 12px;
 }
 
 #conversationBloc #center .conversationReceived .senderProfile time {
@@ -572,7 +618,7 @@ body {
 #conversationBloc #center .conversationSend .sendConversation {
     position: relative;
     width: fit-content;
-    background-color: #6D75C5;
+    background-color: #6d75c5;
     padding: 14px;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -594,7 +640,7 @@ body {
     top: -3px;
     visibility: hidden;
 } */
-#conversationBloc #center .conversationSend  .option {
+#conversationBloc #center .conversationSend .option {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -620,31 +666,41 @@ body {
     width: fit-content;
     padding: 0;
 }
-#conversationBloc #center .conversationSend .sendConversation .dropdown-menu{
+#conversationBloc #center .conversationSend .sendConversation .dropdown-menu {
     font-size: 12px;
     overflow-x: hidden;
     padding-block: 5px;
     min-width: 50px !important;
-    animation:fade 0.4s ease-in-out;
-    -webkit-animation:fade 0.4s ease-in-out;
+    animation: fade 0.4s ease-in-out;
+    -webkit-animation: fade 0.4s ease-in-out;
 }
 @keyframes fade {
-    0%{
+    0% {
         opacity: 0;
     }
-    100%{
+    100% {
         opacity: 1;
     }
 }
-#conversationBloc #center .conversationSend .sendConversation .dropdown-menu .dropdown-item{
+#conversationBloc
+    #center
+    .conversationSend
+    .sendConversation
+    .dropdown-menu
+    .dropdown-item {
     padding-block: 3px;
     padding-inline: 10px;
 }
-#conversationBloc #center .conversationSend .sendConversation .dropdown-menu .dropdown-item:active{
-    background-color:#6D75C5;
+#conversationBloc
+    #center
+    .conversationSend
+    .sendConversation
+    .dropdown-menu
+    .dropdown-item:active {
+    background-color: #6d75c5;
     color: white;
 }
-#conversationBloc #center .conversationSend .options button:focus{
+#conversationBloc #center .conversationSend .options button:focus {
     border: none;
     box-shadow: none;
 }
@@ -672,17 +728,12 @@ body {
     background-color: #efefef;
     padding-inline: 20px;
     color: #666;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
 }
 
 time {
     font-size: 10px;
 }
-
-
-
-
-
 
 #conversationBloc #center .noBackground {
     /* background-color: #ddd; */
@@ -696,7 +747,14 @@ time {
     /* background-color: red; */
 }
 
-#conversationBloc #center .conversationSend .maxWidth .sendConversation .sendMessage .image img {
+#conversationBloc
+    #center
+    .conversationSend
+    .maxWidth
+    .sendConversation
+    .sendMessage
+    .image
+    img {
     width: 80%;
     height: auto;
     object-fit: cover;
@@ -724,16 +782,17 @@ time {
     -o-border-radius: 5px;
 }
 
-
 #conversationGlobalBloc #aboutADiscussion {
     height: calc(100% - 40px);
     width: 370px;
     padding: 20px;
     opacity: 1;
     /*flex: 1;
-    */overflow-y: scroll;
+    */
+    overflow-y: scroll;
     /*background-color: blueviolet;
-    */margin: 20px;
+    */
+    margin: 20px;
     box-shadow: 0 0 20px rgb(213, 212, 212);
     transition: 0.5s ease;
     -webkit-transition: 0.5s ease;
@@ -748,27 +807,27 @@ time {
     position: relative;
 }
 
-#conversationGlobalBloc #aboutADiscussion  #status .top i{
+#conversationGlobalBloc #aboutADiscussion #status .top i {
     position: absolute;
     top: 20px;
     left: 20px;
-    background-color: #6D75C5;
+    background-color: #6d75c5;
     color: white;
     font-size: 20px;
     padding: 5px;
 }
-#conversationGlobalBloc #aboutADiscussion  #status .top i:hover{
+#conversationGlobalBloc #aboutADiscussion #status .top i:hover {
     opacity: 0.7;
 }
 
-#conversationGlobalBloc #aboutADiscussion  #status .top .dropdown{
+#conversationGlobalBloc #aboutADiscussion #status .top .dropdown {
     position: absolute;
     right: 20px;
     top: 0px;
     font-size: 13px;
     background-color: transparent;
 }
-#conversationGlobalBloc #aboutADiscussion  #status .top .dropdown #my-dropdown{
+#conversationGlobalBloc #aboutADiscussion #status .top .dropdown #my-dropdown {
     padding: 0px;
     background-color: transparent;
     color: white;
@@ -781,18 +840,32 @@ time {
     -ms-border-radius: 0;
     -o-border-radius: 0;
 }
-#conversationGlobalBloc #aboutADiscussion  #status .top .dropdown .dropdown-item{
+#conversationGlobalBloc
+    #aboutADiscussion
+    #status
+    .top
+    .dropdown
+    .dropdown-item {
     padding: 0;
     font-size: 13px;
     /* width: fit-content; */
     padding: 5px 0 5px 15px;
-
 }
-#conversationGlobalBloc #aboutADiscussion  #status .top .dropdown .dropdown-item:active{
-    background-color: #6D75C5;
+#conversationGlobalBloc
+    #aboutADiscussion
+    #status
+    .top
+    .dropdown
+    .dropdown-item:active {
+    background-color: #6d75c5;
     color: white !important;
 }
-#conversationGlobalBloc #aboutADiscussion  #status .top .dropdown #my-dropdown:focus{
+#conversationGlobalBloc
+    #aboutADiscussion
+    #status
+    .top
+    .dropdown
+    #my-dropdown:focus {
     border: none;
 }
 #conversationGlobalBloc #aboutADiscussion .top img {
@@ -812,7 +885,7 @@ time {
 #conversationGlobalBloc #separateurConversation {
     width: 3px;
     height: 100%;
-    background-color: #E6EBF5;
+    background-color: #e6ebf5;
 }
 
 #conversationGlobalBloc #aboutADiscussion .bottom {
@@ -823,9 +896,9 @@ time {
 }
 #conversationGlobalBloc #aboutADiscussion .bottom .form-control {
     font-size: 16px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
 }
-#conversationGlobalBloc #aboutADiscussion .bottom .form-control:focus{
+#conversationGlobalBloc #aboutADiscussion .bottom .form-control:focus {
     box-shadow: none;
 }
 #conversationGlobalBloc #aboutADiscussion .bottom #status {
@@ -836,14 +909,14 @@ time {
     color: #444;
     font-size: 18px;
     font-weight: normal;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #conversationGlobalBloc #aboutADiscussion .bottom span {
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
     font-size: 1.1em;
-    color: #6D75C5;
+    color: #6d75c5;
 }
 
 #conversationGlobalBloc #aboutADiscussion .bottom .info {
@@ -864,7 +937,6 @@ time {
     align-items: center;
     justify-content: flex-start;
     margin-block-end: 10px;
-
 }
 
 #aboutADiscussion .bottom .commonGroup img {
@@ -878,18 +950,18 @@ time {
     -o-border-radius: 50%;
 }
 
-#aboutADiscussion .bottom .commonGroup .dropdown{
+#aboutADiscussion .bottom .commonGroup .dropdown {
     position: relative;
     top: -15px;
 }
-#aboutADiscussion .bottom .commonGroup span{
+#aboutADiscussion .bottom .commonGroup span {
     flex: 1;
 }
-#aboutADiscussion .bottom .commonGroup .dropdown .dropdown-item{
+#aboutADiscussion .bottom .commonGroup .dropdown .dropdown-item {
     font-size: 12px;
 }
-#aboutADiscussion .bottom .commonGroup .dropdown .dropdown-item:active{
-    background-color: #6D75C5;
+#aboutADiscussion .bottom .commonGroup .dropdown .dropdown-item:active {
+    background-color: #6d75c5;
     color: white !important;
 }
 .animNone {
@@ -926,8 +998,6 @@ time {
         -o-transform: translateX(600px);
     }
 }
-
-
 
 /* Webkit (Safari, Chrome, Opera) */
 ::-webkit-scrollbar {
@@ -969,21 +1039,6 @@ time {
     background-color: #f1f1f1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #contacts {
     background-color: #f1f1f1;
     width: 340px;
@@ -1006,21 +1061,22 @@ time {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-inline-end: 20px
+    padding-inline-end: 20px;
 }
 
 #contacts .top #contactRow i {
     position: relative;
     top: -10px;
-    background-color: #DEF3F0;
-    color: #06D6A0;
+    background-color: #def3f0;
+    color: #06d6a0;
     padding: 10px;
     cursor: pointer;
 }
 
 #contacts #messageTitle {
     font-size: 1.4rem;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
     margin-bottom: 25px;
 }
 
@@ -1068,7 +1124,7 @@ time {
 }
 
 #contacts #classement .letter .head h4 {
-    color: #888ECF;
+    color: #888ecf;
     font-size: 16px;
 }
 
@@ -1091,7 +1147,7 @@ time {
     gap: 7px;
     justify-content: center;
     align-items: center;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #contacts #classement .letter .contactApercu .contactProfile img {
@@ -1106,7 +1162,6 @@ time {
 }
 
 #contacts #classement .letter .contactApercu .contactProfile h6 {
-
     position: relative;
     top: 4px;
     font-weight: 500;
@@ -1118,58 +1173,56 @@ time {
     height: 100vh !important;
 }
 
-
-#contacts  .addContactModalHead {
+#contacts .addContactModalHead {
     padding: 15px;
     background-color: #6d75c5;
 }
 
-#contacts  .addContactModalHead #titre {
+#contacts .addContactModalHead #titre {
     color: #fff;
 }
 
-#contacts  .addContactModalHead button {
+#contacts .addContactModalHead button {
     background-color: #6d75c5;
     border: none;
-
 }
 
-#contacts  .addContactModalHead button span {
+#contacts .addContactModalHead button span {
     font-size: 20px;
     color: #ccc;
 }
 
-#contacts  .addContactModalHead button span:hover {
+#contacts .addContactModalHead button span:hover {
     color: #fff;
 }
-#contacts #invitationsSent{
+#contacts #invitationsSent {
     max-height: 150px;
     overflow-y: scroll;
 }
-#contacts #invitationsSent  h6{
+#contacts #invitationsSent h6 {
     text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     margin-block: 10px;
 }
-#contacts #invitationsSent .invitation{
+#contacts #invitationsSent .invitation {
     position: relative;
 }
-#contacts #invitationsSent .invitation .receverProfile{
+#contacts #invitationsSent .invitation .receverProfile {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap:15px;
+    gap: 15px;
     padding-inline: 20px;
     margin-bottom: 10px;
 }
-#contacts #invitationsSent .invitation .receverProfile i{
+#contacts #invitationsSent .invitation .receverProfile i {
     color: #5792d1;
 }
-#contacts #invitationsSent .invitation .receverProfile span{
+#contacts #invitationsSent .invitation .receverProfile span {
     font-size: 16px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
 }
-#contacts #invitationsSent .invitation .options{
+#contacts #invitationsSent .invitation .options {
     position: absolute;
     right: 25px;
     top: 0px;
@@ -1208,7 +1261,45 @@ time {
     border-width: 1px !important;
 }
 
-
+#loading-state {
+    background-color: green;
+    color: white;
+    position: absolute;
+    top: 2px;
+    width: 100px;
+    font-size: 0.8em;
+    left: calc(50% - 50px);
+    text-align: center;
+    padding-inline: 5px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+#loading-state span {
+    font-size: 1.4em;
+}
+#loading-state-span1 {
+    animation: loading 1s ease infinite;
+    -webkit-animation: loading 1s ease infinite;
+}
+#loading-state-span2 {
+    animation: loading 2s ease infinite;
+    -webkit-animation: loading 2s ease infinite;
+}
+#loading-state-span3 {
+    animation: loading 3s ease infinite;
+    -webkit-animation: loading 3s ease infinite;
+}
+@keyframes loading {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
 .star {
     visibility: hidden;
     font-size: 45px;
@@ -1241,16 +1332,16 @@ time {
     right: 0;
 }
 
-#newGroupModal{
+#newGroupModal {
     font-size: 14px;
 }
-#newGroupModal #addGroupModalHead{
-    background-color:#6D75C5;
+#newGroupModal #addGroupModalHead {
+    background-color: #6d75c5;
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-#newGroupModal #addGroupModalHead button{
-    background-color: #6D75C5;
+#newGroupModal #addGroupModalHead button {
+    background-color: #6d75c5;
     border: none;
     color: white;
     font-size: 20px;
@@ -1281,25 +1372,21 @@ time {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
-#newGroupModal #inviteButton:disabled{
+#newGroupModal #inviteButton:disabled {
     background-color: #70738f;
     color: #888;
 }
 
-
-
-
-
-#forwardMessageModal{
+#forwardMessageModal {
     font-size: 14px;
 }
-#forwardMessageModal .modal-header{
-    background-color:#6D75C5;
+#forwardMessageModal .modal-header {
+    background-color: #6d75c5;
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-#forwardMessageModal .modal-header button{
-    background-color: #6D75C5;
+#forwardMessageModal .modal-header button {
+    background-color: #6d75c5;
     border: none;
     color: white;
     font-size: 20px;
@@ -1330,37 +1417,34 @@ time {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
 }
-#forwardMessageModal #inviteButton:disabled{
+#forwardMessageModal #inviteButton:disabled {
     background-color: #70738f;
     color: #888;
 }
 
-
-
-
-#addMemberToGroupModal #addMemberToGroupModalHead{
-    background-color: #6D75C5;
+#addMemberToGroupModal #addMemberToGroupModalHead {
+    background-color: #6d75c5;
     color: white;
 }
-#addMemberToGroupModal #addMemberToGroupModalHead button{
+#addMemberToGroupModal #addMemberToGroupModalHead button {
     background-color: transparent;
     color: white;
     border: none;
 }
-#addMemberToGroupModal form .form-control:focus{
+#addMemberToGroupModal form .form-control:focus {
     box-shadow: none;
 }
-#addMemberToGroupModal form  label{
+#addMemberToGroupModal form label {
     font-size: 17px;
     margin-bottom: 10px;
 }
-#addMemberToGroupModal form #closeButton{
+#addMemberToGroupModal form #closeButton {
     /* padding: 10px; */
     background-color: transparent;
     color: #5792d1;
     border: none;
 }
-#addMemberToGroupModal form #inviteButton{
+#addMemberToGroupModal form #inviteButton {
     padding: 10px;
     border-radius: 10px;
     border: none;
@@ -1372,9 +1456,8 @@ time {
     -o-border-radius: 10px;
 }
 
-
 #profileManagement {
-    background-color: #F6F6F9;
+    background-color: #f6f6f9;
     width: 340px;
     height: 100%;
     padding-bottom: 20px;
@@ -1383,19 +1466,18 @@ time {
     flex-direction: column;
     overflow: hidden;
 }
-#profileManagement .top{
+#profileManagement .top {
     /* position: relative; */
     height: 270px;
     /* background-color: #ddd; */
 }
-#profileManagement .top #bgImage{
+#profileManagement .top #bgImage {
     /* position: absolute;
     top: 0;
     left: 0;
     right: 0; */
-
 }
-#profileManagement .top #settings{
+#profileManagement .top #settings {
     width: 100%;
     height: 160px;
     background-size: cover;
@@ -1405,8 +1487,7 @@ time {
     justify-content: flex-start;
 }
 
-
-#profileManagement .top #settings div{
+#profileManagement .top #settings div {
     color: white;
     display: flex;
     padding-inline: 20px;
@@ -1415,10 +1496,10 @@ time {
     padding-top: 20px;
 }
 
-#profileManagement .top #settings h4{
+#profileManagement .top #settings h4 {
     font-size: 18px;
 }
-#profileManagement .top #settings i{
+#profileManagement .top #settings i {
     padding: 8px;
     border-radius: 50px;
     background-color: white;
@@ -1429,7 +1510,7 @@ time {
     -ms-border-radius: 50px;
     -o-border-radius: 50px;
 }
-#profileManagement .top .photoBloc .photo{
+#profileManagement .top .photoBloc .photo {
     width: 80px;
     height: 80px;
     border: 5px solid white;
@@ -1440,14 +1521,13 @@ time {
 
     margin: auto;
 
-
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-#profileManagement .top .photoBloc .photo img{
+#profileManagement .top .photoBloc .photo img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -1456,7 +1536,7 @@ time {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-#profileManagement .top .photoBloc .photo #camera{
+#profileManagement .top .photoBloc .photo #camera {
     position: absolute;
     right: -4px;
     bottom: -3px;
@@ -1470,23 +1550,30 @@ time {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-#profileManagement .top .photoBloc .photo .drop .dropdown #activeStatus{
+#profileManagement .top .photoBloc .photo .drop .dropdown #activeStatus {
     color: #666;
     font-size: 14px;
     margin-top: 15px;
 }
-#profileManagement .top .photoBloc .photo .drop .dropdown #activeStatus .fa-chevron-down{
+#profileManagement
+    .top
+    .photoBloc
+    .photo
+    .drop
+    .dropdown
+    #activeStatus
+    .fa-chevron-down {
     font-size: 12px;
 }
-#profileManagement .bottom{
+#profileManagement .bottom {
     font-size: 14px;
     overflow-y: scroll;
     margin-top: 8px;
 }
-#profileManagement .bottom #personal-info form{
+#profileManagement .bottom #personal-info form {
     position: relative;
 }
-#profileManagement .bottom .editPersonalInfo{
+#profileManagement .bottom .editPersonalInfo {
     position: absolute;
     right: 0;
 
@@ -1499,76 +1586,77 @@ time {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-#profileManagement .bottom #personal-info form label{
+#profileManagement .bottom #personal-info form label {
     color: #666;
     font-weight: 480;
 }
-#profileManagement .bottom #personal-info form .form-control{
+#profileManagement .bottom #personal-info form .form-control {
     font-size: 12px;
 }
-#profileManagement .bottom #personal-info form .form-control:focus{
+#profileManagement .bottom #personal-info form .form-control:focus {
     box-shadow: none;
 }
-#profileManagement .bottom .accordion-button{
+#profileManagement .bottom .accordion-button {
     font-size: 16px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
     border: 1px solid rgb(245, 245, 245);
     padding: 7px;
 }
-#profileManagement .bottom .accordion-button::after{
+#profileManagement .bottom .accordion-button::after {
     scale: 0.6;
-   /* transform: scale(0.6);
+    /* transform: scale(0.6);
     -webkit-transform: scale(0.6);
     -moz-transform: scale(0.6);
     -ms-transform: scale(0.6);
     -o-transform: scale(0.6); */
 }
-#profileManagement .bottom .accordion-button:focus{
-    box-shadow: 0px 0px 4px #CFE2FF;
+#profileManagement .bottom .accordion-button:focus {
+    box-shadow: 0px 0px 4px #cfe2ff;
 }
-#profileManagement .bottom .accordion-button i{
-    background-color: #DCEDFC;
+#profileManagement .bottom .accordion-button i {
+    background-color: #dcedfc;
     padding: 8px;
-    color: #50A5F1;
+    color: #50a5f1;
     margin-inline-end: 20px;
 }
-#profileManagement .bottom #privacyOne h6{
+#profileManagement .bottom #privacyOne h6 {
     margin-bottom: 15px;
     font-size: 13px;
     opacity: 0.8;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-#profileManagement .bottom #privacyOne .select{
+#profileManagement .bottom #privacyOne .select {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 15px;
 }
-#profileManagement .bottom #privacyOne  label{
+#profileManagement .bottom #privacyOne label {
     font-weight: 500;
     font-size: 13px;
 }
-#profileManagement .bottom #privacyOne .select select{
+#profileManagement .bottom #privacyOne .select select {
     max-width: 150px !important;
     font-size: 12px;
 }
-#profileManagement .bottom #privacyOne .select select:focus{
+#profileManagement .bottom #privacyOne .select select:focus {
     box-shadow: none;
 }
-#profileManagement .bottom #privacyOne .select .input-group{
+#profileManagement .bottom #privacyOne .select .input-group {
     justify-content: flex-end !important;
     max-width: 150px !important;
 }
-#profileManagement .bottom  .form-switch{
+#profileManagement .bottom .form-switch {
     display: flex;
     justify-content: space-between;
     padding-inline: 0px !important;
     margin-bottom: 15px;
 }
-#profileManagement .bottom  .form-switch .form-check-input{
+#profileManagement .bottom .form-switch .form-check-input {
     float: none !important;
 }
-#profileManagement .bottom #help a{
+#profileManagement .bottom #help a {
     color: rgba(0, 0, 0, 0.662);
     font-size: 15px;
     text-decoration: none;
@@ -1577,11 +1665,8 @@ time {
     margin-block-end: 7px;
 }
 
-
-
-
 @media all and (max-width: 1200px) {
-    #aboutADiscussion{
+    #aboutADiscussion {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -1589,21 +1674,21 @@ time {
         opacity: 0;
     }
 
-    #conversationBloc > div.top > div.right > img.details{
+    #conversationBloc > div.top > div.right > img.details {
         display: none;
     }
-    #conversationBloc > div.top > div.right > img#detailsMediaQueries{
+    #conversationBloc > div.top > div.right > img#detailsMediaQueries {
         display: inline;
     }
 }
-@media all and (min-width:1200px){
-    #status > div.top > i{
+@media all and (min-width: 1200px) {
+    #status > div.top > i {
         display: none;
     }
 }
 
 @media all and (max-width: 900px) {
-    #conversationBloc .top .left .fa.fa-backspace{
+    #conversationBloc .top .left .fa.fa-backspace {
         display: flex;
     }
 }

@@ -18,18 +18,20 @@ class DiscussionComponent extends Component
 
     // public $listeners = ["removeIsActive"];
 
-    public function getListeners(){
+    public function getListeners()
+    {
         return [
-            "showApercuMessage". $this->data['id'] => "showApercuMessage",
-            "showApercuMessageWithReset". $this->data['id'] => "showApercuMessageWithReset",
-            "resetCount".$this->data['id'] => "resetCount"
+            "showApercuMessage" . $this->data['id'] => "showApercuMessage",
+            "showApercuMessageWithReset" . $this->data['id'] => "showApercuMessageWithReset",
+            "resetCount" . $this->data['id'] => "resetCount"
         ];
     }
 
     public $data;
 
-    public function mount($data){
-        $this->data = array_merge($data,['isActive' => session()->has('discussionActifId') && session('discussionActifId') == $data['id'] ,'class' => null]);
+    public function mount($data)
+    {
+        $this->data = array_merge($data, ['isActive' => session()->has('discussionActifId') && session('discussionActifId') == $data['id'], 'class' => null]);
     }
 
     public function render()
@@ -37,8 +39,10 @@ class DiscussionComponent extends Component
         return view('livewire.discussion-component');
     }
 
-    public function showConversation(){
-        $this->emit('showDiscussion',$this->data['id']);
+    public function showConversation()
+    {
+        $this->emitTo('loading-component', 'load');
+        $this->emit('showDiscussion', $this->data['id']);
 
         $this->data['class'] = null;
 
@@ -55,28 +59,29 @@ class DiscussionComponent extends Component
         // $this->dispatchBrowserEvent('manageActive',['id' => $this->id]);
     }
 
-    public function removeIsActive($infos){
+    public function removeIsActive($infos)
+    {
 
         $this->data['isActive'] = false;
 
-        if($infos['isDiscussion'] && $infos['id'] == $this->data['id']){
+        if ($infos['isDiscussion'] && $infos['id'] == $this->data['id']) {
             $this->data['isActive'] = true;
         }
     }
 
-    public function showApercuMessage($message,$incr = true){
+    public function showApercuMessage($message, $incr = true)
+    {
         $this->data['message'] = $message;
-        if($incr)
-            $this->data['numberUnreadMessages'] ++;
+        if ($incr)
+            $this->data['numberUnreadMessages']++;
         $this->data['scrollToUp'] = true;
 
-        if($this->data['id'] !== session()->get('discussionActifId')){
+        if ($this->data['id'] !== session()->get('discussionActifId')) {
             $this->dispatchBrowserEvent('removeNewMessageClass');
             $this->data['class'] = 'newMessage';
             $this->data['isActive'] = false;
             $this->dispatchBrowserEvent('newMessageDiscussion');
-
-        }else{
+        } else {
             $this->dispatchBrowserEvent('newMessageSentFromActiveDiscussion');
         }
 
@@ -87,12 +92,14 @@ class DiscussionComponent extends Component
 
     }
 
-    public function resetCount(){
+    public function resetCount()
+    {
         $this->data['numberUnreadMessages'] = 0;
     }
 
-    public function showApercuMessageWithReset($message){
-        $this->showApercuMessage($message,false);
+    public function showApercuMessageWithReset($message)
+    {
+        $this->showApercuMessage($message, false);
         $this->resetCount();
     }
 }

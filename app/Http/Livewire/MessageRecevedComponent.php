@@ -10,15 +10,19 @@ use App\Events\DeleteDiscussionMessageEvent;
 
 class MessageRecevedComponent extends Component
 {
-    use MessageInterface,EmojiDetectionTrait;
+    use MessageInterface, EmojiDetectionTrait;
 
-    public function getListeners(){
-        if($this->data){
-            if($this->data['isDeleted'])
-                return [];
-            return ['delete'. $this->data['id'] => "deleted"];
-        }
-        return ['delete'. $this->data['id'] => "deleted"];
+    public function getListeners()
+    {
+        return [
+            'delete' . $this->data['id'] => "deleted"
+        ];
+        // if ($this->data) {
+        //     if ($this->data['isDeleted'])
+        //         return [];
+        //     return ['delete' . $this->data['id'] => "deleted"];
+        // }
+        // return ['delete' . $this->data['id'] => "deleted"];
     }
 
 
@@ -27,30 +31,30 @@ class MessageRecevedComponent extends Component
         return view('livewire.message-receved-component');
     }
 
-    private function deleteMessage(){
-        try{
+    private function deleteMessage()
+    {
+        try {
             // Message::find($this->data['id'])->delete();
 
-            $discussion = Discussion::where('id',session()->get('discussionActifId'))->first();
+            $discussion = Discussion::where('id', session()->get('discussionActifId'))->first();
 
             $receiverId = ($discussion->user1_id == auth()->user()->id) ? $discussion->user2_id : $discussion->user1_id;
 
 
 
-            event(new DeleteDiscussionMessageEvent(['receiver_id' => $receiverId,"message_id" => $this->data['id']]));
+            event(new DeleteDiscussionMessageEvent(['receiver_id' => $receiverId, "message_id" => $this->data['id']]));
 
             // $this->data = null;
 
 
             $this->data = ["isDeleted" => true, "contenu" => "This message is deleted"];
-
-        }catch(Exception $e){
-
+        } catch (Exception $e) {
         }
     }
 
-    public function deleted(){
-        if($this->data)
-            $this->data = ["isDeleted" => true, "contenu" => "This message is deleted"];
+    public function deleted()
+    {
+        // if ($this->data)
+        $this->data = ["isDeleted" => true, "contenu" => "This message is deleted"];
     }
 }

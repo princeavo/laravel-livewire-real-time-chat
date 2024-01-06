@@ -46,9 +46,10 @@ class ConversationBlocComponent extends Component
     //     }
     // }
 
-    private function isLeavedGroup($group_id){
+    private function isLeavedGroup($group_id)
+    {
         // return Db::table('leave_group')->where('user_id',auth()->user()->id)->get();
-        return Db::table('leave_group')->where('groupe_id', $group_id)->where('user_id',auth()->user()->id)->get(['created_at'])->first()->created_at ?? false;
+        return Db::table('leave_group')->where('groupe_id', $group_id)->where('user_id', auth()->user()->id)->get(['created_at'])->first()->created_at ?? false;
     }
 
     public function render()
@@ -57,7 +58,7 @@ class ConversationBlocComponent extends Component
 
             $isUserLeaveGroup = $this->isLeavedGroup(session()->get('groupActifId'));
 
-            if($isUserLeaveGroup){
+            if ($isUserLeaveGroup) {
                 session()->put('essai', $isUserLeaveGroup);
             }
             // else{
@@ -65,7 +66,7 @@ class ConversationBlocComponent extends Component
             // }
 
             $data = [
-                "groupe" => Groupe::where("id", session()->get('groupActifId'))->with(["messages.sender","creator.pays","membres",'messages.usersCanNotReadThisMessage','userLeavedGroup','messages.usersHaveThisMessageFavorite'])->first()
+                "groupe" => Groupe::where("id", session()->get('groupActifId'))->with(["messages.sender", "creator.pays", "membres", 'messages.usersCanNotReadThisMessage', 'userLeavedGroup', 'messages.usersHaveThisMessageFavorite'])->first()
             ];
 
 
@@ -100,7 +101,7 @@ class ConversationBlocComponent extends Component
 
             // dd($AboutGroupData);
 
-            if($isUserLeaveGroup){
+            if ($isUserLeaveGroup) {
                 $AboutGroupData['groupe']['hideOptions'] = true;
             }
 
@@ -109,15 +110,18 @@ class ConversationBlocComponent extends Component
             // $this->emitTo("about-group-component","showGroup",$AboutGroupData);
             // $this->dispatchBrowserEvent('activeGroup', ['id' => session()->get('groupActifId')]);
         } elseif (session()->has('discussionActifId')) {
-        $discussion = Discussion::where("id", session()->get('discussionActifId'));
-        $favoritesCollection = DB::table("messages_favorites")->where('user_id',auth()->user()->id)->get('message_id');
-        $favorites = [];
-        foreach ($favoritesCollection as $obj) {
-            $favorites[] = $obj->message_id;
-        }
+
+            $discussion = Discussion::where("id", session()->get('discussionActifId'));
+            $favoritesCollection = DB::table("messages_favorites")->where('user_id', auth()->user()->id)->get('message_id');
+            $favorites = [];
+            foreach ($favoritesCollection as $obj) {
+                $favorites[] = $obj->message_id;
+            }
+            $discussion = $discussion->with(["user1", "user2", "messages"])->first();
+            $discussion->messages = $discussion->messages->reverse();
             $data = [
-                "discussion" => $discussion->with(["user1","user2", "messages"])->first(),
-                "favorites" =>collect($favorites)
+                "discussion" => $discussion,
+                "favorites" => collect($favorites)
             ];
             // $this->emitTo("top-component","showDiscussion",$data);
         } else {
@@ -133,6 +137,7 @@ class ConversationBlocComponent extends Component
         $this->dispatchBrowserEvent('scrollToLastMessage');
         session()->forget("discussionActifId");
         session()->put("groupActifId", $id);
+        $this->emitTo('loading-component', 'loadFinished');
         // $this->dispatchBrowserEvent('activeGroup', ['id' => $id]);
 
         // $this->emitTo('top-component','refreshEvent');
@@ -144,6 +149,7 @@ class ConversationBlocComponent extends Component
         $this->dispatchBrowserEvent('scrollToLastMessage');
         session()->forget("groupActifId");
         session()->put("discussionActifId", $id);
+        $this->emitTo('loading-component', 'loadFinished');
         // $this->dispatchBrowserEvent('activeDiscussion', ['id' => $id]);
     }
 
@@ -163,11 +169,11 @@ class ConversationBlocComponent extends Component
 
             $this->dispatchBrowserEvent('newMessageSentFromADiscussion');
         } elseif (session()->has('discussionActifId')) {
-            $discussion = Discussion::where('id' , '=' ,session()->get('discussionActifId') )->first();
+            $discussion = Discussion::where('id', '=', session()->get('discussionActifId'))->first();
 
-            if($discussion->user1_id == auth()->user()->id){
+            if ($discussion->user1_id == auth()->user()->id) {
                 $receiver_id = $discussion->user2_id;
-            }else{
+            } else {
                 $receiver_id = $discussion->user1_id;
             }
 
@@ -182,7 +188,7 @@ class ConversationBlocComponent extends Component
             $listenerMessage = \Illuminate\Support\Str::limit($this->messageContent ?? "", 25);
 
             // $this->emit("newMessageSent");
-            $this->dispatchBrowserEvent('newMessageSentFromADiscussion',["message" => $listenerMessage,"id" =>$newMessage->discussion_id ]);
+            $this->dispatchBrowserEvent('newMessageSentFromADiscussion', ["message" => $listenerMessage, "id" => $newMessage->discussion_id]);
         }
 
 
@@ -191,89 +197,91 @@ class ConversationBlocComponent extends Component
         $this->dispatchBrowserEvent('scrollToLastMessage');
     }
 
-    public function refresh(){
+    public function refresh()
+    {
         return $this->render();
     }
 
-    public function deleteGroupMessage(GroupesMessages $message){
+    public function deleteGroupMessage(GroupesMessages $message)
+    {
         $message->delete();
     }
 
-    public function deleteGroupMessageForMe(GroupesMessages $message){
+    public function deleteGroupMessageForMe(GroupesMessages $message)
+    {
         $message->usersCanNotReadThisMessage()->attach(auth()->user()->id);
 
         /**
          * @var  \Illuminate\Support\Collection
          */
         $d = $message->usersCanNotReadThisMessage;
-        $d->contains(function ($user){
+        $d->contains(function ($user) {
             return $user->id == auth()->user()->id;
         });
     }
 
-    public function addMessageToGroupBookMark($groupeMessageId){
-        try{
+    public function addMessageToGroupBookMark($groupeMessageId)
+    {
+        try {
             auth()->user()->messagesFavoritesGroupes()->attach($groupeMessageId);
-        }catch(Exception $e){
-
+        } catch (Exception $e) {
         }
-
     }
 
-    public function deleteMessageToGroupBookMark($groupeMessageId){
-        try{
+    public function deleteMessageToGroupBookMark($groupeMessageId)
+    {
+        try {
             auth()->user()->messagesFavoritesGroupes()->detach($groupeMessageId);
-        }catch(Exception $e){
-
+        } catch (Exception $e) {
         }
-
     }
 
-    public function deleteDiscussionMessageForMe(Message $discussionMessage){
+    public function deleteDiscussionMessageForMe(Message $discussionMessage)
+    {
 
 
         $authUserId = auth()->user()->id;
-        if($discussionMessage->sender_id == $authUserId){
+        if ($discussionMessage->sender_id == $authUserId) {
             $discussionMessage->isVisibleForSender = 0;
-        }elseif($discussionMessage->receiver_id == $authUserId){
+        } elseif ($discussionMessage->receiver_id == $authUserId) {
             $discussionMessage->isVisibleForReceiver = 0;
-        }else{
+        } else {
             //Ici je dois désactiver le compte de l'user en cours puisqu'il n'est ni le sender ni le recever du message
             die();
         }
 
-        if($discussionMessage->isVisibleForReceiver == 0 && $discussionMessage->isVisibleForSender == 0)
+        if ($discussionMessage->isVisibleForReceiver == 0 && $discussionMessage->isVisibleForSender == 0)
             $discussionMessage->delete();
         else
             $discussionMessage->save();
     }
 
-    public function deleteDiscussionMessage($discussionMessageId){
-        Message::where('id' , '=' , $discussionMessageId)->delete();
+    public function deleteDiscussionMessage($discussionMessageId)
+    {
+        Message::where('id', '=', $discussionMessageId)->delete();
     }
 
-    public function addMessageToDiscussionBookMark($discussionMessageId){
-        try{
+    public function addMessageToDiscussionBookMark($discussionMessageId)
+    {
+        try {
             auth()->user()->messagesFavorites()->attach($discussionMessageId);
-        }catch(Exception $e){
-
+        } catch (Exception $e) {
         }
     }
 
-    public function deleteMessageToDiscussionBookMark($discussionMessageId){
-        try{
+    public function deleteMessageToDiscussionBookMark($discussionMessageId)
+    {
+        try {
             auth()->user()->messagesFavorites()->detach($discussionMessageId);
-        }catch(Exception $e){
-
+        } catch (Exception $e) {
         }
     }
 
-    public function closeDiscussion(){
+    public function closeDiscussion()
+    {
         session()->forget(['groupActifId']);
         session()->forget(['discussionActifId']);
     }
-
-
 }
 
 

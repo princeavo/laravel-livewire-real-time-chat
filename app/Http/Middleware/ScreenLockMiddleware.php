@@ -16,7 +16,7 @@ class ScreenLockMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth()->user()->isScreenLocked()){
+        if (Auth()->user()->isScreenLocked()) {
             return to_route('screen_locked');
         }
         return $next($request);

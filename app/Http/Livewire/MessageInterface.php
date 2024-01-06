@@ -7,67 +7,69 @@ use App\Models\Message;
 use App\Models\Discussion;
 use App\Events\DeleteDiscussionMessageEvent;
 
-trait MessageInterface {
+trait MessageInterface
+{
 
     public $data;
 
-    public function mount($data){
-        if(isset($data['isDeleted']) && $data['isDeleted']){
-            $this->data = ["isDeleted" => true, "contenu" => "This message is deleted"];
-        }
-        else{
+    public function mount($data)
+    {
+        if (isset($data['isDeleted']) && $data['isDeleted']) {
+            $this->data = ["isDeleted" => true, "contenu" => "This message is deleted", "id" => $data['id']];
+        } else {
             $data['isDeleted'] = 0;
             $this->data = $data;
         }
     }
 
-    public function addMessageToDiscussionBookMark(){
-        try{
+    public function addMessageToDiscussionBookMark()
+    {
+        try {
             auth()->user()->messagesFavorites()->attach($this->data['id']);
             $this->data['isSaved'] = true;
-        }catch(Exception $e){
-
+        } catch (Exception $e) {
         }
     }
 
-    public function deleteMessageToDiscussionBookMark(){
-        try{
+    public function deleteMessageToDiscussionBookMark()
+    {
+        try {
             auth()->user()->messagesFavorites()->detach($this->data['id']);
             $this->data['isSaved'] = false;
-        }catch(Exception $e){
-
+        } catch (Exception $e) {
         }
     }
 
-    public function deleteDiscussionMessageForMe(){
+    public function deleteDiscussionMessageForMe()
+    {
 
 
         $authUserId = auth()->user()->id;
-        $message = Message::where('id',$this->data['id'])->first();
+        $message = Message::where('id', $this->data['id'])->first();
 
 
-        if($message->sender_id == $authUserId){
+        if ($message->sender_id == $authUserId) {
             $message->isVisibleForSender = 0;
-            $this->data = ['id' => $this->data['id']];
-        }elseif($message->receiver_id == $authUserId){
+            $this->data = ['id' => $this->data['id'], "isDeleted" => true];
+        } elseif ($message->receiver_id == $authUserId) {
             $message->isVisibleForReceiver = 0;
-            $this->data = ['id' => $this->data['id']];
-        }else{
+            $this->data = ['id' => $this->data['id'], "isDeleted" => true];
+        } else {
             //Ici je dois désactiver le compte de l'user en cours puisqu'il n'est ni le sender ni le recever du message
             die();
         }
 
-        if($message->isVisibleForReceiver == 0 && $message->isVisibleForSender == 0){
+        if ($message->isVisibleForReceiver == 0 && $message->isVisibleForSender == 0) {
             $this->deleteMessage();
-        }
-        else{
+        } else {
             $message->save();
         }
     }
 
 
 
-    public function forwadMessage(){
-        $this->emitTo('forward-message-modal-component','forwardDiscussionMessage',$this->data['id']);
+    public function forwadMessage()
+    {
+        $this->emitTo('forward-message-modal-component', 'forwardDiscussionMessage', $this->data['id']);
     }
 }

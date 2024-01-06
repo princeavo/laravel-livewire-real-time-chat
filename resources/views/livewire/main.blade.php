@@ -41,7 +41,7 @@
 
 
 
-
+    @livewire('loading-component')
 
 
 

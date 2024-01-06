@@ -19,7 +19,8 @@ class PersonalInfoComponent extends Component
 
     // public $user;
 
-    public function mount(){
+    public function mount()
+    {
         $this->initialize(auth()->user()->loadMissing(["pays"]));
     }
 
@@ -29,38 +30,40 @@ class PersonalInfoComponent extends Component
 
     public function render()
     {
-        return view('livewire.personal-info-component',[
+        return view('livewire.personal-info-component', [
             "pays" => Pays::all()
             // "user" => $this->user
         ]);
     }
 
-    public function updateProfile(){
+    public function updateProfile()
+    {
         $validated = $this->validate([
             'lastname' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255',Rule::unique("users","email")->ignore(auth()->user()->id)],
-            "pays_id" => ["required",'exists:pays,id'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique("users", "email")->ignore(auth()->user()->id)],
+            "pays_id" => ["required", 'exists:pays,id'],
             "contact" => ["nullable"],
             "status" => ['required', 'string', 'max:255']
         ]);
 
         $isUserChangeHisMail = $validated['email'] !== auth()->user()->email;
 
-        if( $isUserChangeHisMail ){
+        if ($isUserChangeHisMail) {
             auth()->user()->email_verified_at = null;
         }
 
         auth()->user()->fill($validated)->save();
 
-        if($isUserChangeHisMail){
+        if ($isUserChangeHisMail) {
             return redirect('/');
         }
 
-        session()->flash('updateProfileSuccessMessage','Modifications enrégistreés avec succès');
+        session()->flash('updateProfileSuccessMessage', 'Modifications enrégistreés avec succès');
     }
 
-    public function initialize($user){
+    public function initialize($user)
+    {
         // $user = auth()->user();this->
 
         $this->lastname = $user->lastname;

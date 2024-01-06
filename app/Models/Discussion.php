@@ -20,7 +20,7 @@ class Discussion extends Model
 
     public function messages()
     {
-        return $this->hasMany(Message::class)->oldest();
+        return $this->hasMany(Message::class)->latest()->take(10);
     }
 
     public function lastMessage()
@@ -29,7 +29,7 @@ class Discussion extends Model
     }
     public function lastMessageEssai()
     {
-        return $this->hasOne(Message::class)->orderBy('created_at','desc');
+        return $this->hasOne(Message::class)->orderBy('created_at', 'desc');
     }
 
     // public function user(){
@@ -38,12 +38,13 @@ class Discussion extends Model
     //     }
     //     return $this->belongsTo(User::class,"user1_id");
     // }
-    public function user1(){
-        return $this->belongsTo(User::class,"user1_id");
+    public function user1()
+    {
+        return $this->belongsTo(User::class, "user1_id");
     }
 
-    public function user2(){
-        return $this->belongsTo(User::class,"user2_id");
+    public function user2()
+    {
+        return $this->belongsTo(User::class, "user2_id");
     }
-
 }

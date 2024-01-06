@@ -14,16 +14,18 @@ class GroupComponent extends Component
     // nombresMembres
     // numberUnreadMessages
 
-    public function getListeners(){
+    public function getListeners()
+    {
         return [
-            'groupPhotoUpdated'.($this->data['id'] ?? '') => 'groupPhotoUpdated',
-            'groupLeave'.($this->data['id'] ?? '') => 'groupDeleted',
-            'groupDeleted'.($this->data['id'] ?? '') => 'groupDeleted',
+            'groupPhotoUpdated' . ($this->data['id'] ?? '') => 'groupPhotoUpdated',
+            'groupLeave' . ($this->data['id'] ?? '') => 'groupDeleted',
+            'groupDeleted' . ($this->data['id'] ?? '') => 'groupDeleted',
         ];
     }
 
-    public function mount($data){
-        $this->data = array_merge($data,['isActive' => session()->has('groupActifId') && session('groupActifId') == $data['id'] ]);
+    public function mount($data)
+    {
+        $this->data = array_merge($data, ['isActive' => session()->has('groupActifId') && session('groupActifId') == $data['id']]);
     }
 
     public function render()
@@ -31,21 +33,24 @@ class GroupComponent extends Component
         return view('livewire.group-component');
     }
 
-    public function showConversation(){
-        $this->emit('showGroup',$this->data['id']);
+    public function showConversation()
+    {
+        $this->emitTo('loading-component', 'load');
+        $this->emit('showGroup', $this->data['id']);
 
         $this->data['numberUnreadMessages'] = 0;
         $this->data['isActive'] = true;
     }
 
-    public function groupPhotoUpdated($newPhoto){
-        if($this->data){
+    public function groupPhotoUpdated($newPhoto)
+    {
+        if ($this->data) {
             $this->data['photo'] = $newPhoto['photo'];
         }
-
     }
 
-    public function groupDeleted(){
+    public function groupDeleted()
+    {
         $this->data = null;
     }
 }

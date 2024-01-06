@@ -15,48 +15,54 @@ class MessageSentComponent extends Component
     use MessageInterface, EmojiDetectionTrait;
 
 
-    public function getListeners(){
-        if(count($this->data) != 1){
-            if($this->data['isDeleted'])
-                return [];
-            if(!$this->data['read']){
-                return [
-                    "markRead". $this->data['id'] => "markRead",
-                    "markRead" => "markRead",
-                    'delete'. $this->data['id'] => "deleted"
-                ];
-            }
-            return ['delete'. $this->data['id'] => "deleted","markRead"];
-        }
-        return ['delete'. $this->data['id'] => "deleted"]; //Ceci c'est pour un message supprimé chez moi mais pas chez l'autre
+    public function getListeners()
+    {
+        return [
+            "markRead" . $this->data['id']  => "markRead",
+            "markRead" => "markRead",
+            'delete' . $this->data['id'] => "deleted"
+        ];
+        // if (count($this->data) != 1) {
+        //     if ($this->data['isDeleted'])
+        //         return [];
+        //     if (!$this->data['read']) {
+        //         return [
+        //             "markRead" . $this->data['id'] => "markRead",
+        //             "markRead" => "markRead",
+        //             'delete' . $this->data['id'] => "deleted"
+        //         ];
+        //     }
+        //     return ['delete' . $this->data['id'] => "deleted", "markRead"];
+        // }
+        // return ['delete' . $this->data['id'] => "deleted"]; //Ceci c'est pour un message supprimé chez moi mais pas chez l'autre
 
     }
 
-    private function deleteMessage(){
-        try{
+    private function deleteMessage()
+    {
+        try {
             // Message::find($this->data['id'])->delete();
 
 
-            $discussion = Discussion::where('id',session()->get('discussionActifId'))->first();
+            $discussion = Discussion::where('id', session()->get('discussionActifId'))->first();
 
             $receiverId = ($discussion->user1_id == auth()->user()->id) ? $discussion->user2_id : $discussion->user1_id;
 
 
 
-            event(new DeleteDiscussionMessageEvent(['receiver_id' => $receiverId,"message_id" => $this->data['id']]));
+            event(new DeleteDiscussionMessageEvent(['receiver_id' => $receiverId, "message_id" => $this->data['id']]));
 
             // $this->data = null;
 
-            $this->data = ["isDeleted" => true, "contenu" => "This message is deleted"];
+            $this->data = ["isDeleted" => true, "contenu" => "This message is deleted", "id" => $this->data['id']];
 
-            if($this->data['image']){
+            if ($this->data['image']) {
                 Storage::disk('public')->delete($this->data['image']);
             }
 
             // dd("ok");
 
-        }catch(Exception $e){
-
+        } catch (Exception $e) {
         }
     }
     public function render()
@@ -103,23 +109,26 @@ class MessageSentComponent extends Component
     //     }
     // }
 
-    public function markRead(){
+    public function markRead()
+    {
         $this->data['read'] = true;
     }
 
-    public function deleted(){
-        if($this->data)
+    public function deleted()
+    {
+        if ($this->data)
             $this->data = ["isDeleted" => true, "contenu" => "This message is deleted"];
     }
 
-    public function deleteDiscussionMessage(){
+    public function deleteDiscussionMessage()
+    {
 
-        Message::where('id',$this->data['id'])->update(['isDeleted' => true]);
+        Message::where('id', $this->data['id'])->update(['isDeleted' => true]);
 
-        $discussion = Discussion::where('id',session()->get('discussionActifId'))->first();
+        $discussion = Discussion::where('id', session()->get('discussionActifId'))->first();
 
         $receiverId = ($discussion->user1_id == auth()->user()->id) ? $discussion->user2_id : $discussion->user1_id;
-        event(new DeleteDiscussionMessageEvent(['receiver_id' => $receiverId,"message_id" => $this->data['id']]));
+        event(new DeleteDiscussionMessageEvent(['receiver_id' => $receiverId, "message_id" => $this->data['id']]));
 
 
         $this->data = ["isDeleted" => true, "contenu" => "This message is deleted"];

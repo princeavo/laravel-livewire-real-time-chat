@@ -26,7 +26,8 @@ class SendMessageComponent extends Component
 
     public $messageContent;
 
-    public function mount($isAdmin = 0){
+    public function mount($isAdmin = 0)
+    {
         $this->isAdmin = $isAdmin;
     }
 
@@ -34,7 +35,8 @@ class SendMessageComponent extends Component
     {
         return view('livewire.send-message-component');
     }
-    public function newMessage(){
+    public function newMessage()
+    {
         $this->validate([
             "messageContent" => "required"
         ]);
@@ -48,8 +50,8 @@ class SendMessageComponent extends Component
 
             $path = null;
 
-            if($this->image){
-                $path = $this->image->store('groupes_messages_images','public');
+            if ($this->image) {
+                $path = $this->image->store('groupes_messages_images', 'public');
                 // DB::table('messages_images')->insert(['type' => 'group','id' => $newGroupMessage->id,'path' => $path]);
 
                 $this->image = null;
@@ -69,18 +71,18 @@ class SendMessageComponent extends Component
                 'image' => $path
             ];
 
-            $this->emit('newMessageSentFromAGroup',$data);
+            $this->emit('newMessageSentFromAGroup', $data);
 
 
             $this->dispatchBrowserEvent('newMessageSentFromAGroup');
 
             // $this->dispatchBrowserEvent('newMessageSentFromAGroup',["message" => $newGroupMessage->contenu,"id" => $newGroupMessage->id]);
         } elseif (session()->has('discussionActifId')) {
-            $discussion = Discussion::where('id' , '=' ,session()->get('discussionActifId') )->first();
+            $discussion = Discussion::where('id', '=', session()->get('discussionActifId'))->first();
 
-            if($discussion->user1_id == auth()->user()->id){
+            if ($discussion->user1_id == auth()->user()->id) {
                 $receiver_id = $discussion->user2_id;
-            }else{
+            } else {
                 $receiver_id = $discussion->user1_id;
             }
 
@@ -94,9 +96,10 @@ class SendMessageComponent extends Component
             // $newMessage->save();
             $apercuMessage = Str::limit($this->messageContent ?? "", 25);
 
+            $path = null;
 
-            if($this->image){
-                $path = $this->image->store('discussions_messages','public');
+            if ($this->image) {
+                $path = $this->image->store('discussions_messages', 'public');
             }
 
             $newMessage->image = $path;
@@ -105,7 +108,7 @@ class SendMessageComponent extends Component
             $data = [
                 "contenu" => $newMessage->contenu,
                 "date" => $newMessage->created_at->format("d/m/y H:i:s"),
-                "id" =>$newMessage->id,
+                "id" => $newMessage->id,
                 // 'disucussion_id' => $newMessage->discussion_id,
                 'isSaved' => false,
                 'sentFromMe' => true,
@@ -115,35 +118,34 @@ class SendMessageComponent extends Component
 
             $this->image = null;
 
-            $this->emitTo('test-component',"newMessageSentFromADiscussion",$data);
+            $this->emitTo('test-component', "newMessageSentFromADiscussion", $data);
 
             $data['sentFromMe'] = false;
             $data['sender_id'] = auth()->user()->id;
 
             // dd(array_merge($data,['receiver_id' => $receiver_id]));
 
-            event(new NewDiscussionMessage( array_merge($data,['receiver_id' => $receiver_id,'discussion_id' => session()->get('discussionActifId')])));
-/**
+            event(new NewDiscussionMessage(array_merge($data, ['receiver_id' => $receiver_id, 'discussion_id' => session()->get('discussionActifId')])));
+            /**
 //  * @var \Illuminate\Foundation\Bus\PendingDispatch
 //  */
-//             $k = 4;
-//             $k->
+            //             $k = 4;
+            //             $k->
 
-            $this->dispatchBrowserEvent('newMessageSentFromADiscussion',['apercuMessage'=>$apercuMessage]);
+            $this->dispatchBrowserEvent('newMessageSentFromADiscussion', ['apercuMessage' => $apercuMessage]);
             $this->dispatchBrowserEvent('scrollToLastMessage');
-
         }
 
 
         $this->messageContent = "";
-
     }
 
     // public function updatedPhoto(){
 
     // }
 
-    public function groupLeave(){
+    public function groupLeave()
+    {
         $this->hide = true;
     }
 }
